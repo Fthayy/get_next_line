@@ -10,6 +10,8 @@ char *get_line(char *script)
     int i;
 
     i = 0;
+    if (!script[i])
+		return (NULL);
     while (script[i] != '\n' && script[i] != '\0')
         i++;
     str = malloc(i*sizeof(char)+2);
@@ -52,6 +54,7 @@ char *last_get_script(char *script)
     while (script[i])
         str[j++] = script[i++];
     str[j] = '\0';
+    free(script);
     return (str);
 }
 
@@ -74,6 +77,7 @@ char *get_script(int fd, char *script)
         buff[byte] = '\0';
         script = ft_strjoin(script,buff);
     }
+    free(buff);
     return(script);
 }
 
@@ -91,6 +95,7 @@ char *get_next_line(int fd)
     return (line);
 }
 
+/*
 int	main(void)
 {
 	char	*line;
@@ -108,3 +113,4 @@ int	main(void)
 	close(fd1);
 	return (0);
 }
+*/
